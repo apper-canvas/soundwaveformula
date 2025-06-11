@@ -1,9 +1,9 @@
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import ApperIcon from './components/ApperIcon';
-import PlayerBar from './components/PlayerBar';
-import { usePlayer } from './context/PlayerContext';
+import ApperIcon from '@/components/ApperIcon';
+import PlayerBar from '@/components/PlayerBar';
+import { usePlayer } from '@/context/PlayerContext';
 
 export default function Layout() {
   const location = useLocation();
