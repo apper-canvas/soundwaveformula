@@ -1,0 +1,110 @@
+[
+  {
+    "id": "1",
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "album": "After Hours",
+    "duration": 200,
+    "coverUrl": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/blinding-lights.mp3"
+  },
+  {
+    "id": "2",
+    "title": "Watermelon Sugar",
+    "artist": "Harry Styles",
+    "album": "Fine Line",
+    "duration": 174,
+    "coverUrl": "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/watermelon-sugar.mp3"
+  },
+  {
+    "id": "3",
+    "title": "Levitating",
+    "artist": "Dua Lipa",
+    "album": "Future Nostalgia",
+    "duration": 203,
+    "coverUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/levitating.mp3"
+  },
+  {
+    "id": "4",
+    "title": "Good 4 U",
+    "artist": "Olivia Rodrigo",
+    "album": "SOUR",
+    "duration": 178,
+    "coverUrl": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/good-4-u.mp3"
+  },
+  {
+    "id": "5",
+    "title": "Stay",
+    "artist": "The Kid LAROI, Justin Bieber",
+    "album": "F*CK LOVE 3: OVER YOU",
+    "duration": 141,
+    "coverUrl": "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/stay.mp3"
+  },
+  {
+    "id": "6",
+    "title": "Industry Baby",
+    "artist": "Lil Nas X, Jack Harlow",
+    "album": "MONTERO",
+    "duration": 212,
+    "coverUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/industry-baby.mp3"
+  },
+  {
+    "id": "7",
+    "title": "As It Was",
+    "artist": "Harry Styles",
+    "album": "Harry's House",
+    "duration": 167,
+    "coverUrl": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/as-it-was.mp3"
+  },
+  {
+    "id": "8",
+    "title": "Heat Waves",
+    "artist": "Glass Animals",
+    "album": "Dreamland",
+    "duration": 238,
+    "coverUrl": "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/heat-waves.mp3"
+  },
+  {
+    "id": "9",
+    "title": "Bad Habits",
+    "artist": "Ed Sheeran",
+    "album": "=",
+    "duration": 231,
+    "coverUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/bad-habits.mp3"
+  },
+  {
+    "id": "10",
+    "title": "MONTERO (Call Me By Your Name)",
+    "artist": "Lil Nas X",
+    "album": "MONTERO",
+    "duration": 137,
+    "coverUrl": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/montero.mp3"
+  },
+  {
+    "id": "11",
+    "title": "Peaches",
+    "artist": "Justin Bieber ft. Daniel Caesar, Giveon",
+    "album": "Justice",
+    "duration": 198,
+    "coverUrl": "https://images.unsplash.com/photo-1571330735066-03aaa9429d89?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/peaches.mp3"
+  },
+  {
+    "id": "12",
+    "title": "Drivers License",
+    "artist": "Olivia Rodrigo",
+    "album": "SOUR",
+    "duration": 242,
+    "coverUrl": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&h=300&fit=crop&crop=center",
+    "audioUrl": "/audio/drivers-license.mp3"
+  }
+]
