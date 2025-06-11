@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ApperIcon from './ApperIcon';
-import { usePlayer } from '../context/PlayerContext';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
+import { usePlayer } from '@/context/PlayerContext';
 
 export default function VolumeControl() {
   const { playerState, setVolume } = usePlayer();
@@ -25,14 +26,14 @@ export default function VolumeControl() {
         onMouseEnter={() => setShowSlider(true)}
         onMouseLeave={() => setShowSlider(false)}
       >
-        <motion.button
+        <Button
+          onClick={toggleMute}
+          className="p-1 text-gray-400 hover:text-white"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={toggleMute}
-          className="p-1 text-gray-400 hover:text-white transition-colors duration-150"
         >
           <ApperIcon name={getVolumeIcon()} size={16} />
-        </motion.button>
+        </Button>
 
         <AnimatePresence>
           {showSlider && (

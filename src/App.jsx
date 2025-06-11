@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import Layout from './Layout';
-import Home from './pages/Home';
-import Search from './pages/Search';
-import Library from './pages/Library';
-import Playlist from './pages/Playlist';
-import NowPlaying from './pages/NowPlaying';
-import NotFound from './pages/NotFound';
+import HomePage from '@/components/pages/HomePage';
+import SearchPage from '@/components/pages/SearchPage';
+import LibraryPage from '@/components/pages/LibraryPage';
+import PlaylistPage from '@/components/pages/PlaylistPage';
+import NowPlayingPage from '@/components/pages/NowPlayingPage';
+import NotFoundPage from '@/components/pages/NotFoundPage';
 import PlayerProvider from './context/PlayerContext';
 
 export default function App() {
@@ -17,12 +17,12 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Navigate to="/home" replace />} />
-              <Route path="home" element={<Home />} />
-              <Route path="search" element={<Search />} />
-              <Route path="library" element={<Library />} />
-              <Route path="playlist/:id" element={<Playlist />} />
-              <Route path="now-playing" element={<NowPlaying />} />
-              <Route path="*" element={<NotFound />} />
+<Route path="home" element={<HomePage />} />
+              <Route path="search" element={<SearchPage />} />
+              <Route path="library" element={<LibraryPage />} />
+              <Route path="playlist/:id" element={<PlaylistPage />} />
+              <Route path="now-playing" element={<NowPlayingPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
           <ToastContainer

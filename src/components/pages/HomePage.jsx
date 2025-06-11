@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import TrackList from '../components/TrackList';
-import PlaylistCard from '../components/PlaylistCard';
-import AlbumCard from '../components/AlbumCard';
-import SkeletonLoader from '../components/SkeletonLoader';
-import ErrorState from '../components/ErrorState';
-import { trackService, playlistService, albumService } from '../services';
+import TrackList from '@/components/organisms/TrackList';
+import PlaylistCard from '@/components/molecules/PlaylistCard';
+import AlbumCard from '@/components/molecules/AlbumCard';
+import SkeletonLoader from '@/components/atoms/SkeletonLoader';
+import ErrorState from '@/components/molecules/ErrorState';
+import Button from '@/components/atoms/Button';
+import { trackService, playlistService, albumService } from '@/services';
 
-export default function Home() {
+export default function HomePage() {
   const [recentTracks, setRecentTracks] = useState([]);
   const [featuredPlaylists, setFeaturedPlaylists] = useState([]);
   const [newReleases, setNewReleases] = useState([]);
@@ -95,9 +96,9 @@ export default function Home() {
       >
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">Featured Playlists</h2>
-          <button className="text-sm text-gray-400 hover:text-white transition-colors duration-150">
+          <Button className="text-sm text-gray-400 hover:text-white bg-transparent" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             Show all
-          </button>
+          </Button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
           {featuredPlaylists.map((playlist, index) => (
@@ -122,9 +123,9 @@ export default function Home() {
       >
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">New Releases</h2>
-          <button className="text-sm text-gray-400 hover:text-white transition-colors duration-150">
+          <Button className="text-sm text-gray-400 hover:text-white bg-transparent" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             Show all
-          </button>
+          </Button>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
           {newReleases.map((album, index) => (
@@ -148,9 +149,9 @@ export default function Home() {
       >
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-semibold">Recently Played</h2>
-          <button className="text-sm text-gray-400 hover:text-white transition-colors duration-150">
+          <Button className="text-sm text-gray-400 hover:text-white bg-transparent" whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             Show all
-          </button>
+          </Button>
         </div>
         <TrackList tracks={recentTracks} showIndex={false} />
       </motion.section>

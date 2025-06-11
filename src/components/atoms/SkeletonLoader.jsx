@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function SkeletonLoader({ type = 'card', count = 1 }) {
   const renderSkeleton = () => {
     switch (type) {

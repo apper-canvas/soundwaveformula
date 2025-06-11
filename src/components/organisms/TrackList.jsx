@@ -1,12 +1,14 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import ApperIcon from './ApperIcon';
-import { usePlayer } from '../context/PlayerContext';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
+import { usePlayer } from '@/context/PlayerContext';
 
 export default function TrackList({ tracks = [], showIndex = false, playlist = null }) {
   const { playTrack, playerState } = usePlayer();
 
-  const handleTrackPlay = (track, index) => {
+  const handleTrackPlay = (track) => { // Removed index as it's not used when playing
     const trackList = playlist || tracks;
     playTrack(track, trackList);
     toast.success(`Playing "${track.title}"`);
@@ -56,7 +58,7 @@ export default function TrackList({ tracks = [], showIndex = false, playlist = n
           className={`grid grid-cols-12 gap-4 px-4 py-2 rounded-lg group cursor-pointer transition-colors duration-150 ${
             isCurrentTrack(track) ? 'bg-surface text-primary' : 'hover:bg-surface/50'
           }`}
-          onClick={() => handleTrackPlay(track, index)}
+          onClick={() => handleTrackPlay(track)}
         >
           {/* Index/Play Button */}
           <div className="col-span-1 flex items-center justify-center">
@@ -65,25 +67,30 @@ export default function TrackList({ tracks = [], showIndex = false, playlist = n
                 <span className={`group-hover:hidden ${isCurrentTrack(track) ? 'hidden' : 'block'} text-sm`}>
                   {index + 1}
                 </span>
-                <motion.div
+                <Button
+                  className={`${isCurrentTrack(track) ? 'block' : 'hidden group-hover:block'} p-0 bg-transparent hover:bg-transparent`}
                   whileHover={{ scale: 1.1 }}
-                  className={`${isCurrentTrack(track) ? 'block' : 'hidden group-hover:block'}`}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <ApperIcon 
                     name={isCurrentTrack(track) && playerState.isPlaying ? "Volume2" : "Play"} 
                     size={16} 
                     className={isCurrentTrack(track) ? 'text-primary' : 'text-white'}
                   />
-                </motion.div>
+                </Button>
               </div>
             ) : (
-              <motion.div whileHover={{ scale: 1.1 }}>
+              <Button
+                className="p-0 bg-transparent hover:bg-transparent"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <ApperIcon 
                   name={isCurrentTrack(track) && playerState.isPlaying ? "Pause" : "Play"} 
                   size={16}
                   className={isCurrentTrack(track) ? 'text-primary' : 'text-gray-400 group-hover:text-white'}
                 />
-              </motion.div>
+              </Button>
             )}
           </div>
 
@@ -115,23 +122,23 @@ export default function TrackList({ tracks = [], showIndex = false, playlist = n
 
           {/* Duration and Actions */}
           <div className="col-span-3 md:col-span-2 flex items-center justify-end space-x-2">
-            <motion.button
+            <Button
+              className="p-1 text-gray-400 hover:text-primary opacity-0 group-hover:opacity-100 bg-transparent"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="opacity-0 group-hover:opacity-100 p-1 text-gray-400 hover:text-primary transition-all duration-150"
             >
               <ApperIcon name="Heart" size={14} />
-            </motion.button>
+            </Button>
             <span className="text-sm text-gray-400 min-w-0">
               {formatDuration(track.duration)}
             </span>
-            <motion.button
+            <Button
+              className="p-1 text-gray-400 hover:text-white opacity-0 group-hover:opacity-100 bg-transparent"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              className="opacity-0 group-hover:opacity-100 p-1 text-gray-400 hover:text-white transition-all duration-150"
             >
               <ApperIcon name="MoreHorizontal" size={14} />
-            </motion.button>
+            </Button>
           </div>
         </motion.div>
       ))}

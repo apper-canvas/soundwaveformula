@@ -1,8 +1,9 @@
-import Home from '../pages/Home';
-import Search from '../pages/Search';
-import Library from '../pages/Library';
-import Playlist from '../pages/Playlist';
-import NowPlaying from '../pages/NowPlaying';
+import HomePage from '@/components/pages/HomePage';
+import SearchPage from '@/components/pages/SearchPage';
+import LibraryPage from '@/components/pages/LibraryPage';
+import PlaylistPage from '@/components/pages/PlaylistPage';
+import NowPlayingPage from '@/components/pages/NowPlayingPage';
+// import NotFoundPage from '@/components/pages/NotFoundPage'; // Not directly used in routes array
 
 export const routes = {
   home: {
@@ -10,28 +11,28 @@ export const routes = {
     label: 'Home',
     path: '/home',
     icon: 'Home',
-    component: Home
+component: HomePage
   },
   search: {
     id: 'search',
     label: 'Search',
     path: '/search',
     icon: 'Search',
-    component: Search
+component: SearchPage
   },
   library: {
     id: 'library',
     label: 'Your Library',
     path: '/library',
     icon: 'Library',
-    component: Library
+component: LibraryPage
   },
   nowPlaying: {
     id: 'nowPlaying',
     label: 'Now Playing',
     path: '/now-playing',
     icon: 'Music',
-    component: NowPlaying
+component: NowPlayingPage
   }
 };
 

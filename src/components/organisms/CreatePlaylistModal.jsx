@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Input from '@/components/atoms/Input';
+import Button from '@/components/atoms/Button';
+import Checkbox from '@/components/atoms/Checkbox';
 
 export default function CreatePlaylistModal({ isOpen, onClose, onSubmit }) {
   const [name, setName] = useState('');
@@ -55,35 +58,38 @@ export default function CreatePlaylistModal({ isOpen, onClose, onSubmit }) {
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-white">Create playlist</h2>
-                <button
+                <Button
                   onClick={handleClose}
-                  className="p-1 text-gray-400 hover:text-white transition-colors duration-150 rounded"
+                  className="p-1 text-gray-400 hover:text-white rounded"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
                 >
                   <ApperIcon name="X" size={20} />
-                </button>
+                </Button>
               </div>
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
+                  <label htmlFor="playlist-name" className="block text-sm font-medium text-white mb-2">
                     Name
                   </label>
-                  <input
+                  <Input
+                    id="playlist-name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="My Playlist #1"
-                    className="w-full px-3 py-2 bg-[#3E3E3E] border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-150"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-white mb-2">
+                  <label htmlFor="playlist-description" className="block text-sm font-medium text-white mb-2">
                     Description (optional)
                   </label>
                   <textarea
+                    id="playlist-description"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     placeholder="Add an optional description"
@@ -92,37 +98,33 @@ export default function CreatePlaylistModal({ isOpen, onClose, onSubmit }) {
                   />
                 </div>
 
-                <div className="flex items-center space-x-3">
-                  <input
-                    type="checkbox"
-                    id="private"
-                    checked={isPrivate}
-                    onChange={(e) => setIsPrivate(e.target.checked)}
-                    className="w-4 h-4 text-primary bg-[#3E3E3E] border-gray-600 rounded focus:ring-primary focus:ring-2"
-                  />
-                  <label htmlFor="private" className="text-sm text-white">
-                    Make private
-                  </label>
-                </div>
+                <Checkbox
+                  id="private"
+                  checked={isPrivate}
+                  onChange={(e) => setIsPrivate(e.target.checked)}
+                  label="Make private"
+                />
 
                 {/* Actions */}
                 <div className="flex justify-end space-x-3 pt-4">
-                  <button
+                  <Button
                     type="button"
                     onClick={handleClose}
-                    className="px-4 py-2 text-gray-300 hover:text-white transition-colors duration-150"
-                  >
-                    Cancel
-                  </button>
-                  <motion.button
+                    className="px-4 py-2 text-gray-300 hover:text-white"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
                     type="submit"
                     disabled={!name.trim()}
-                    className="px-6 py-2 bg-primary hover:bg-accent text-black font-medium rounded-full transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-6 py-2 bg-primary hover:bg-accent text-black font-medium rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Create
-                  </motion.button>
+                  </Button>
                 </div>
               </form>
             </div>

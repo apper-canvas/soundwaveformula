@@ -1,9 +1,11 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import ApperIcon from './ApperIcon';
-import PlayerControls from './PlayerControls';
-import VolumeControl from './VolumeControl';
-import { usePlayer } from '../context/PlayerContext';
+import ApperIcon from '@/components/ApperIcon';
+import PlayerControls from '@/components/organisms/PlayerControls';
+import VolumeControl from '@/components/molecules/VolumeControl';
+import Button from '@/components/atoms/Button';
+import { usePlayer } from '@/context/PlayerContext';
 
 export default function PlayerBar() {
   const navigate = useNavigate();
@@ -23,11 +25,11 @@ export default function PlayerBar() {
       <div className="flex items-center justify-between max-w-full">
         {/* Current Track Info */}
         <div className="flex items-center space-x-3 min-w-0 flex-1 lg:flex-none lg:w-1/4">
-          <motion.button
+          <Button
+            onClick={() => navigate('/now-playing')}
+            className="flex items-center space-x-3 min-w-0 flex-1 lg:flex-none p-0 bg-transparent hover:bg-transparent" // Override default button styles
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => navigate('/now-playing')}
-            className="flex items-center space-x-3 min-w-0 flex-1 lg:flex-none"
           >
             <img
               src={currentTrack.coverUrl}
@@ -42,15 +44,15 @@ export default function PlayerBar() {
                 {currentTrack.artist}
               </p>
             </div>
-          </motion.button>
+          </Button>
           
-          <motion.button
+          <Button
+            className="p-1 text-gray-400 hover:text-primary flex-shrink-0 bg-transparent"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="p-1 text-gray-400 hover:text-primary transition-colors duration-150 flex-shrink-0"
           >
             <ApperIcon name="Heart" size={16} />
-          </motion.button>
+          </Button>
         </div>
 
         {/* Player Controls - Hidden on mobile */}
@@ -60,21 +62,24 @@ export default function PlayerBar() {
 
         {/* Volume and Additional Controls - Hidden on mobile */}
         <div className="hidden lg:flex items-center justify-end space-x-4 w-1/4">
-          <button className="p-1 text-gray-400 hover:text-white transition-colors duration-150">
+          <Button className="p-1 text-gray-400 hover:text-white bg-transparent"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}>
             <ApperIcon name="List" size={16} />
-          </button>
+          </Button>
           <VolumeControl />
         </div>
 
         {/* Mobile Play/Pause */}
         <div className="lg:hidden flex items-center space-x-2">
-          <motion.button
+          <Button
+            onClick={() => navigate('/now-playing')} // Go to NowPlaying page on mobile play/pause click
+            className="p-2 text-white hover:text-primary bg-transparent" // Keep consistent with existing hover behavior
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 text-white hover:text-primary transition-colors duration-150"
           >
             <ApperIcon name={playerState.isPlaying ? "Pause" : "Play"} size={20} />
-          </motion.button>
+          </Button>
         </div>
       </div>
     </motion.div>

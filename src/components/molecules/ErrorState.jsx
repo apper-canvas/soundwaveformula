@@ -1,5 +1,7 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
 
 export default function ErrorState({ 
   message = 'Something went wrong', 
@@ -27,14 +29,12 @@ export default function ErrorState({
       </p>
       
       {onRetry && (
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+        <Button
           onClick={onRetry}
-          className="px-6 py-2 bg-primary hover:bg-accent text-black font-medium rounded-full transition-colors duration-150"
+          className="px-6 py-2 bg-primary hover:bg-accent text-black font-medium rounded-full"
         >
           {retryLabel}
-        </motion.button>
+        </Button>
       )}
     </motion.div>
   );

@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import ApperIcon from '../components/ApperIcon';
-import TrackList from '../components/TrackList';
-import PlaylistCard from '../components/PlaylistCard';
-import AlbumCard from '../components/AlbumCard';
-import SkeletonLoader from '../components/SkeletonLoader';
-import EmptyState from '../components/EmptyState';
-import { trackService, playlistService, albumService } from '../services';
+import ApperIcon from '@/components/ApperIcon';
+import TrackList from '@/components/organisms/TrackList';
+import PlaylistCard from '@/components/molecules/PlaylistCard';
+import AlbumCard from '@/components/molecules/AlbumCard';
+import SkeletonLoader from '@/components/atoms/SkeletonLoader';
+import EmptyState from '@/components/molecules/EmptyState';
+import ErrorState from '@/components/molecules/ErrorState';
+import SearchInput from '@/components/organisms/SearchInput';
+import CategoryBrowse from '@/components/organisms/CategoryBrowse';
+import { trackService, playlistService, albumService } from '@/services';
 
-export default function Search() {
+export default function SearchPage() {
   const [query, setQuery] = useState('');
   const [tracks, setTracks] = useState([]);
   const [playlists, setPlaylists] = useState([]);
@@ -96,16 +99,7 @@ export default function Search() {
     return (
       <div className="p-6">
         <div className="mb-6">
-          <div className="relative max-w-md">
-            <ApperIcon name="Search" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="What do you want to listen to?"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-surface rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:bg-[#3E3E3E] transition-colors duration-150"
-            />
-          </div>
+          <SearchInput query={query} setQuery={setQuery} searching={searching} />
         </div>
         <ErrorState
           message={error}
@@ -119,26 +113,7 @@ export default function Search() {
     <div className="p-6 max-w-full overflow-hidden">
       {/* Search Header */}
       <div className="mb-6">
-        <div className="relative max-w-md">
-          <ApperIcon name="Search" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-          <input
-            type="text"
-            placeholder="What do you want to listen to?"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-surface rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:bg-[#3E3E3E] transition-colors duration-150"
-          />
-          {searching && (
-            <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-              >
-                <ApperIcon name="Loader2" className="text-gray-400" size={20} />
-              </motion.div>
-            </div>
-          )}
-        </div>
+        <SearchInput query={query} setQuery={setQuery} searching={searching} />
       </div>
 
       {/* Search Results */}
@@ -247,35 +222,7 @@ export default function Search() {
         )
       ) : (
         /* Browse Categories */
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <h2 className="text-xl font-semibold mb-4">Browse all</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {categories.map((category, index) => (
-              <motion.div
-                key={category.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative h-24 rounded-lg cursor-pointer overflow-hidden"
-                style={{ backgroundColor: category.color }}
-              >
-                <div className="p-4 h-full flex items-start">
-                  <h3 className="text-white font-semibold text-lg break-words">
-                    {category.name}
-                  </h3>
-                </div>
-                <div className="absolute bottom-0 right-0 transform translate-x-2 translate-y-2 rotate-12">
-                  <div className="w-16 h-16 bg-black/20 rounded-lg"></div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.section>
+        <CategoryBrowse categories={categories} />
       )}
     </div>
   );

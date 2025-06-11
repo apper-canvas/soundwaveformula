@@ -1,5 +1,7 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import ApperIcon from './ApperIcon';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
 
 export default function EmptyState({ 
   title = 'Nothing here yet', 
@@ -28,14 +30,12 @@ export default function EmptyState({
       </p>
       
       {actionLabel && onAction && (
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+        <Button
           onClick={onAction}
-          className="px-6 py-3 bg-primary hover:bg-accent text-black font-medium rounded-full transition-colors duration-150"
+          className="px-6 py-3 bg-primary hover:bg-accent text-black font-medium rounded-full"
         >
           {actionLabel}
-        </motion.button>
+        </Button>
       )}
     </motion.div>
   );

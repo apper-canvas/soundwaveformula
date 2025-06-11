@@ -1,11 +1,13 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import ApperIcon from '../components/ApperIcon';
-import PlayerControls from '../components/PlayerControls';
-import VolumeControl from '../components/VolumeControl';
-import { usePlayer } from '../context/PlayerContext';
+import ApperIcon from '@/components/ApperIcon';
+import PlayerControls from '@/components/organisms/PlayerControls';
+import VolumeControl from '@/components/molecules/VolumeControl';
+import Button from '@/components/atoms/Button';
+import { usePlayer } from '@/context/PlayerContext';
 
-export default function NowPlaying() {
+export default function NowPlayingPage() {
   const navigate = useNavigate();
   const { playerState } = usePlayer();
 
@@ -16,12 +18,12 @@ export default function NowPlaying() {
           <ApperIcon name="Music" className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <h2 className="text-xl font-medium text-white mb-2">No song playing</h2>
           <p className="text-gray-400 mb-6">Choose a song to see it here</p>
-          <button
+          <Button
             onClick={() => navigate('/home')}
-            className="px-4 py-2 bg-primary hover:bg-accent text-black rounded-full font-medium transition-colors duration-150"
+            className="px-4 py-2 bg-primary hover:bg-accent text-black rounded-full font-medium"
           >
             Browse Music
-          </button>
+          </Button>
         </div>
       </div>
     );
@@ -37,21 +39,22 @@ export default function NowPlaying() {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between p-4 md:p-6"
       >
-        <button
+        <Button
           onClick={() => navigate(-1)}
-          className="p-2 text-gray-300 hover:text-white transition-colors duration-150 rounded-full hover:bg-surface/50"
+          className="p-2 text-gray-300 hover:text-white rounded-full hover:bg-surface/50 bg-transparent"
         >
           <ApperIcon name="ChevronDown" size={24} />
-        </button>
+        </Button>
         <div className="text-center">
           <p className="text-xs font-medium text-gray-300 uppercase tracking-wide">
             Playing from playlist
           </p>
+          {/* Note: Playlist name is hardcoded, should be dynamic if possible */}
           <p className="text-sm font-medium text-white">My Playlist #1</p>
         </div>
-        <button className="p-2 text-gray-300 hover:text-white transition-colors duration-150 rounded-full hover:bg-surface/50">
+        <Button className="p-2 text-gray-300 hover:text-white rounded-full hover:bg-surface/50 bg-transparent">
           <ApperIcon name="MoreHorizontal" size={24} />
-        </button>
+        </Button>
       </motion.header>
 
       {/* Main Content */}
@@ -106,20 +109,20 @@ export default function NowPlaying() {
           transition={{ delay: 0.4 }}
           className="flex items-center justify-between w-full max-w-md mt-8"
         >
-          <button className="p-2 text-gray-300 hover:text-white transition-colors duration-150">
+          <Button className="p-2 text-gray-300 hover:text-white bg-transparent">
             <ApperIcon name="Share" size={20} />
-          </button>
+          </Button>
           
           <div className="flex items-center space-x-4">
-            <button className="p-2 text-gray-300 hover:text-primary transition-colors duration-150">
+            <Button className="p-2 text-gray-300 hover:text-primary bg-transparent">
               <ApperIcon name="Heart" size={20} />
-            </button>
+            </Button>
             <VolumeControl />
           </div>
           
-          <button className="p-2 text-gray-300 hover:text-white transition-colors duration-150">
+          <Button className="p-2 text-gray-300 hover:text-white bg-transparent">
             <ApperIcon name="List" size={20} />
-          </button>
+          </Button>
         </motion.div>
       </div>
 

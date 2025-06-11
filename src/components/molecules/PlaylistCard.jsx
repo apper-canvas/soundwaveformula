@@ -1,8 +1,9 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import ApperIcon from './ApperIcon';
-import { usePlayer } from '../context/PlayerContext';
+import ApperIcon from '@/components/ApperIcon';
+import { usePlayer } from '@/context/PlayerContext';
 
 export default function PlaylistCard({ playlist }) {
   const navigate = useNavigate();

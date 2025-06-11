@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import ApperIcon from '../components/ApperIcon';
-import PlaylistCard from '../components/PlaylistCard';
-import AlbumCard from '../components/AlbumCard';
-import SkeletonLoader from '../components/SkeletonLoader';
-import ErrorState from '../components/ErrorState';
-import EmptyState from '../components/EmptyState';
-import CreatePlaylistModal from '../components/CreatePlaylistModal';
-import { playlistService, albumService } from '../services';
+import ApperIcon from '@/components/ApperIcon';
+import PlaylistCard from '@/components/molecules/PlaylistCard';
+import AlbumCard from '@/components/molecules/AlbumCard';
+import SkeletonLoader from '@/components/atoms/SkeletonLoader';
+import ErrorState from '@/components/molecules/ErrorState';
+import EmptyState from '@/components/molecules/EmptyState';
+import CreatePlaylistModal from '@/components/organisms/CreatePlaylistModal';
+import Button from '@/components/atoms/Button';
+import { playlistService, albumService } from '@/services';
 
-export default function Library() {
+export default function LibraryPage() {
   const [playlists, setPlaylists] = useState([]);
   const [albums, setAlbums] = useState([]);
   const [filter, setFilter] = useState('all');
@@ -101,82 +102,94 @@ export default function Library() {
       >
         <div className="flex items-center space-x-4">
           <h1 className="text-2xl font-bold">Your Library</h1>
-          <motion.button
+          <Button
+            onClick={() => setShowCreateModal(true)}
+            className="p-2 text-gray-400 hover:text-white hover:bg-surface rounded-full"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
-            onClick={() => setShowCreateModal(true)}
-            className="p-2 text-gray-400 hover:text-white hover:bg-surface rounded-full transition-colors duration-150"
           >
             <ApperIcon name="Plus" size={20} />
-          </motion.button>
+          </Button>
         </div>
         
         <div className="hidden md:flex items-center space-x-2">
-          <button
+          <Button
             onClick={() => setFilter('all')}
-            className={`px-3 py-1 rounded-full text-sm transition-colors duration-150 ${
+            className={`px-3 py-1 rounded-full text-sm ${
               filter === 'all'
                 ? 'bg-white text-black'
                 : 'bg-surface text-white hover:bg-[#3E3E3E]'
             }`}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             All
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => setFilter('playlists')}
-            className={`px-3 py-1 rounded-full text-sm transition-colors duration-150 ${
+            className={`px-3 py-1 rounded-full text-sm ${
               filter === 'playlists'
                 ? 'bg-white text-black'
                 : 'bg-surface text-white hover:bg-[#3E3E3E]'
             }`}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             Playlists
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => setFilter('albums')}
-            className={`px-3 py-1 rounded-full text-sm transition-colors duration-150 ${
+            className={`px-3 py-1 rounded-full text-sm ${
               filter === 'albums'
                 ? 'bg-white text-black'
                 : 'bg-surface text-white hover:bg-[#3E3E3E]'
             }`}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             Albums
-          </button>
+          </Button>
         </div>
       </motion.div>
 
       {/* Mobile Filter */}
       <div className="md:hidden mb-4 flex space-x-2 overflow-x-auto scrollbar-hide">
-        <button
+        <Button
           onClick={() => setFilter('all')}
-          className={`px-3 py-1 rounded-full text-sm whitespace-nowrap transition-colors duration-150 ${
+          className={`px-3 py-1 rounded-full text-sm whitespace-nowrap ${
             filter === 'all'
               ? 'bg-white text-black'
               : 'bg-surface text-white hover:bg-[#3E3E3E]'
           }`}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           All
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => setFilter('playlists')}
-          className={`px-3 py-1 rounded-full text-sm whitespace-nowrap transition-colors duration-150 ${
+          className={`px-3 py-1 rounded-full text-sm whitespace-nowrap ${
             filter === 'playlists'
               ? 'bg-white text-black'
               : 'bg-surface text-white hover:bg-[#3E3E3E]'
           }`}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           Playlists
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={() => setFilter('albums')}
-          className={`px-3 py-1 rounded-full text-sm whitespace-nowrap transition-colors duration-150 ${
+          className={`px-3 py-1 rounded-full text-sm whitespace-nowrap ${
             filter === 'albums'
               ? 'bg-white text-black'
               : 'bg-surface text-white hover:bg-[#3E3E3E]'
           }`}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
         >
           Albums
-        </button>
+        </Button>
       </div>
 
       {/* Content */}

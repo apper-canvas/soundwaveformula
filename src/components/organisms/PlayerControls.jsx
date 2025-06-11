@@ -1,7 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import ApperIcon from './ApperIcon';
-import { usePlayer } from '../context/PlayerContext';
+import ApperIcon from '@/components/ApperIcon';
+import Button from '@/components/atoms/Button';
+import { usePlayer } from '@/context/PlayerContext';
 
 export default function PlayerControls({ large = false }) {
   const { playerState, togglePlay, skipTrack, previousTrack, setProgress } = usePlayer();
@@ -37,58 +38,59 @@ export default function PlayerControls({ large = false }) {
   const totalTime = playerState.currentTrack?.duration || 0;
 
   const iconSize = large ? 28 : 20;
-  const playButtonSize = large ? 56 : 40;
+  const playButtonSizeClasses = large ? 'w-14 h-14' : 'w-10 h-10';
+  const playButtonIconSize = large ? 24 : 16;
 
   return (
     <div className={`flex flex-col items-center ${large ? 'space-y-4' : 'space-y-2'} w-full`}>
       {/* Controls */}
       <div className="flex items-center space-x-4">
-        <motion.button
+        <Button
+          className="p-2 text-gray-400 hover:text-white bg-transparent"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="p-2 text-gray-400 hover:text-white transition-colors duration-150"
         >
           <ApperIcon name="Shuffle" size={iconSize} />
-        </motion.button>
+        </Button>
         
-        <motion.button
+        <Button
+          onClick={previousTrack}
+          className="p-2 text-gray-400 hover:text-white bg-transparent"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={previousTrack}
-          className="p-2 text-gray-400 hover:text-white transition-colors duration-150"
         >
           <ApperIcon name="SkipBack" size={iconSize} />
-        </motion.button>
+        </Button>
         
-        <motion.button
+        <Button
+          onClick={togglePlay}
+          className={`${playButtonSizeClasses} bg-white hover:bg-gray-100 text-black rounded-full flex items-center justify-center shadow-lg`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={togglePlay}
-          className={`${large ? 'w-14 h-14' : 'w-10 h-10'} bg-white hover:bg-gray-100 text-black rounded-full flex items-center justify-center transition-colors duration-150 shadow-lg`}
         >
           <ApperIcon 
             name={playerState.isPlaying ? "Pause" : "Play"} 
-            size={large ? 24 : 16} 
+            size={playButtonIconSize} 
             className="ml-0.5" 
           />
-        </motion.button>
+        </Button>
         
-        <motion.button
+        <Button
+          onClick={skipTrack}
+          className="p-2 text-gray-400 hover:text-white bg-transparent"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={skipTrack}
-          className="p-2 text-gray-400 hover:text-white transition-colors duration-150"
         >
           <ApperIcon name="SkipForward" size={iconSize} />
-        </motion.button>
+        </Button>
         
-        <motion.button
+        <Button
+          className="p-2 text-gray-400 hover:text-white bg-transparent"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="p-2 text-gray-400 hover:text-white transition-colors duration-150"
         >
           <ApperIcon name="Repeat" size={iconSize} />
-        </motion.button>
+        </Button>
       </div>
 
       {/* Progress Bar */}

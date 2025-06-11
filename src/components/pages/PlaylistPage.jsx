@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
-import ApperIcon from '../components/ApperIcon';
-import TrackList from '../components/TrackList';
-import SkeletonLoader from '../components/SkeletonLoader';
-import ErrorState from '../components/ErrorState';
-import { playlistService } from '../services';
-import { usePlayer } from '../context/PlayerContext';
+import ApperIcon from '@/components/ApperIcon';
+import TrackList from '@/components/organisms/TrackList';
+import SkeletonLoader from '@/components/atoms/SkeletonLoader';
+import ErrorState from '@/components/molecules/ErrorState';
+import Button from '@/components/atoms/Button';
+import { playlistService } from '@/services';
+import { usePlayer } from '@/context/PlayerContext';
 
-export default function Playlist() {
+export default function PlaylistPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [playlist, setPlaylist] = useState(null);
@@ -140,33 +141,33 @@ export default function Playlist() {
         transition={{ delay: 0.1 }}
         className="flex items-center space-x-6 p-6 bg-gradient-to-b from-[#121212]/60 to-[#121212]"
       >
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+        <Button
           onClick={handlePlayAll}
           disabled={!playlist.tracks?.length}
-          className="w-14 h-14 bg-primary hover:bg-accent text-black rounded-full flex items-center justify-center transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-primary/25"
+          className="w-14 h-14 bg-primary hover:bg-accent text-black rounded-full flex items-center justify-center shadow-lg hover:shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           <ApperIcon name="Play" size={24} className="ml-1" />
-        </motion.button>
+        </Button>
         
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+        <Button
           onClick={handleShuffle}
           disabled={!playlist.tracks?.length}
-          className="w-8 h-8 text-gray-300 hover:text-white transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <ApperIcon name="Shuffle" size={24} />
-        </motion.button>
-        
-        <motion.button
+          className="w-8 h-8 text-gray-300 hover:text-white bg-transparent disabled:opacity-50 disabled:cursor-not-allowed"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="w-8 h-8 text-gray-300 hover:text-white transition-colors duration-150"
+        >
+          <ApperIcon name="Shuffle" size={24} />
+        </Button>
+        
+        <Button
+          className="w-8 h-8 text-gray-300 hover:text-white bg-transparent"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
         >
           <ApperIcon name="MoreHorizontal" size={24} />
-        </motion.button>
+        </Button>
       </motion.div>
 
       {/* Track List */}
